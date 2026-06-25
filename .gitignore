@@ -1,0 +1,55 @@
+# ================================================================
+# ESP-IDF 项目 .gitignore
+# ================================================================
+
+# 构建输出 (不要上传编译产物)
+build/
+
+# SDK 配置文件 (sdkconfig 由 menuconfig 生成, 包含本地路径)
+sdkconfig
+sdkconfig.old
+
+# 依赖管理
+managed_components/
+dependencies.lock
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.espressif/
+
+# IDE / 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ESP-IDF 工具生成的临时文件
+*.bin_timestamp
+flasher_args.json
+flash_args
+flash_args.in
+flash_project_args
+flash_app_args
+flash_bootloader_args
+app-flash_args
+bootloader-flash_args
+partition-table-flash_args
+x509_crt_bundle.S
+
+# CMake 生成文件 (保留 CMakeLists.txt)
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# 日志
+build.log
+build_log_full.txt
+build_output.txt

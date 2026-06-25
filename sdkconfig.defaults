@@ -1,0 +1,58 @@
+# ESP32-WROVER-B settings for XRS Coding Machine
+# Flash: 4MB, PSRAM: 8MB (Octal)
+
+# Partition table - single factory app, no OTA
+CONFIG_PARTITION_TABLE_SINGLE_APP=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions_singleapp.csv"
+
+# SPI RAM (PSRAM) — WROVER-B has 8MB Octal PSRAM
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_BOOT_INIT=y
+
+# Flash size: 4MB
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+
+# Flash SPI mode: DIO (safe default, works with most boards)
+CONFIG_ESPTOOLPY_FLASHMODE_DIO=y
+
+# Flash frequency: 40MHz (safe default)
+CONFIG_ESPTOOLPY_FLASHFREQ_40M=y
+
+# CPU frequency: 240MHz (max for ESP32)
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+
+# FreeRTOS tick rate: 1000Hz (needed for smooth LVGL timers)
+CONFIG_FREERTOS_HZ=1000
+
+# Main task stack size: 8KB (LVGL rendering needs more stack)
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+
+# Compiler optimization: performance (-O2)
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+
+# IRAM optimization — keep critical code in IRAM for speed
+CONFIG_SPIRAM_FETCH_INSTRUCTIONS=y
+CONFIG_SPIRAM_RODATA=y
+
+# Increase event loop task stack for LVGL
+CONFIG_ESP_SYSTEM_EVENT_TASK_STACK_SIZE=4096
+
+# Enable WiFi/Bluetooth in case needed later (minimal power)
+CONFIG_ESP_WIFI_ENABLED=n
+CONFIG_ESP_WIFI_REMOTE_ENABLED=n
+CONFIG_BT_ENABLED=n
+
+# Disable console output over USB to avoid interfering with serial
+# (leave enabled for debugging initially, can disable later)
+
+# Heap allocation strategy: prefer internal RAM for small allocs
+CONFIG_SPIRAM_USE_MALLOC=y
+CONFIG_SPIRAM_ALLOW_BSS_SEG_EXTERNAL_MEMORY=y
+
+# LVGL timer task stack size
+CONFIG_LV_TASK_STACK_SIZE=8192
+
+# Reduce logging to save performance
+CONFIG_LOG_DEFAULT_LEVEL_WARN=y
